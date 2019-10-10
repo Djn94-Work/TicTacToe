@@ -1,0 +1,31 @@
+9 divs with different Ids
+arrange with CSS as box
+player objects: isTurn boolean
+
+constructor function Player{
+	this.turn: true;
+}
+
+const playerOne = new Player(){
+ playerOne.sign = 'x';
+};
+const playerTwo = new Player(){
+playerTwo.sign - 'o';
+
+TURN SWITCH FUNCTION
+turnSwitch(){
+if (playerOne.turn){
+	playerOne.turn = false;
+	playerTwo.turn = true;
+}
+else{
+playerOne.turn=true;
+playerTwo.turn=false;
+
+GAME FUNCTION
+	On start, playerTwo.turn = false;
+
+Player one - click square
+if empty, assign player.sign to square
+
+	
