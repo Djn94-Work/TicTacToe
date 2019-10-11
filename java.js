@@ -4,17 +4,11 @@ let targetSquare;
 let xWins = 0;
 let oWins = 0;
 let ties = 0;
-//square vars
 
-const topLeftsq = document.getElementById("topLeft");
-const topsq = document.getElementById("topMid");
-const topRightsq = document.getElementById("topRight");
-const leftsq = document.getElementById("left");
-const middlesq = document.getElementById("middle");
-const rightsq = document.getElementById("right");
-const bottomLeftsq = document.getElementById("bottomLeft");
-const bottomsq = document.getElementById("bottom");
-const bottomRightsq = document.getElementById("bottomRight");
+//modal vars
+const resModal = $("#resModal")[0];
+const tieModal = $("#tieModal")[0];
+const span = $(".close")[0];
 
 //player constructor
 class Player {
@@ -23,43 +17,47 @@ class Player {
     this.name = name;
   }
 }
+
 //player objects
 const playerOne = new Player(true, "x");
 const playerTwo = new Player(false, "o");
 
 // Grabs squares, loops through squares, sets unplayed to true
 function clickEvent() {
-  const elements = document.getElementsByClassName("squares");
+  const elements = $(".squares");
   for (i = 0; i < elements.length; i++) {
     elements[i].setAttribute("unplayed", true);
     elements[i].innerText = "?";
   }
 }
+
+//Opens win modal
 function winModal() {
   console.log(targetSquare);
   if (targetSquare.getAttribute("xplayed") === "true") {
     console.log("x win tree");
-    document.getElementById("winText").innerHTML =
+    $("#winText")[0].innerHTML =
       "Player X has won! Congratulations! <button id='reset'>Restart?</button>";
-    document.getElementById("reset").onclick = function() {
+    $("#reset")[0].onclick = function() {
       clearBoard();
     };
     xWins++;
-    document.getElementById("xwins").innerText = `Player X Wins: ${xWins}`;
+    $("#xwins")[0].innerText = `Player X Wins: ${xWins}`;
     resModal.style.display = "block";
   }
   if (targetSquare.getAttribute("oplayed") === "true") {
     console.log("o win tree");
-    document.getElementById("winText").innerHTML =
+    $("#winText")[0].innerHTML =
       "Player O has won! Congratulations! <button id='reset'>Restart?</button>";
-    document.getElementById("reset").onclick = function() {
+    $("#reset")[0].onclick = function() {
       clearBoard();
     };
     oWins++;
-    document.getElementById("owins").innerText = `Player O Wins: ${oWins}`;
+    $("#owins")[0].innerText = `Player O Wins: ${oWins}`;
     resModal.style.display = "block";
   }
 }
+
 //Searches for all X or all O matches, displays tie at 9 moves
 function checkForWin() {
   if (moves >= 4) {
@@ -145,14 +143,15 @@ function checkForWin() {
     } else if (moves === 8) {
       tieModal.style.display = "block";
       ties++;
-      document.getElementById("ties").innerText = `Ties: ${ties}`;
+      $("#ties")[0].innerText = `Ties: ${ties}`;
     }
   }
 }
 
+//whipe board, reset attributes
 function clearBoard() {
   moves = 0;
-  document.getElementById("moves").innerText = `Moves: ${moves}`;
+  $("#moves")[0].innerText = `Moves: ${moves}`;
   const elements = document.getElementsByClassName("squares");
   for (i = 0; i < elements.length; i++) {
     elements[i].setAttribute("unplayed", true);
@@ -164,20 +163,36 @@ function clearBoard() {
   }
 }
 
-document.getElementById("reset2").onclick = function() {
+//Reset button onclick
+$("#reset2")[0].onclick = function() {
   clearBoard();
 };
+
+//Hide modal on close button
+span.onclick = function() {
+  resModal.style.display = "none";
+  tieModal.style.display = "none";
+};
+
+//hide modal on window click
+window.onclick = function(event) {
+  if (event.target == resModal) {
+    resModal.style.display = "none";
+  }
+  if (event.target == tieModal) {
+    tieModal.style.display = "none";
+  }
+};
+
 //starts on load, sets player one turn to true,
 function game() {
   playerOne.isTurn = true;
   playerTwo.isTurn = false;
   clickEvent();
-  document.getElementById("xwins").innerText = `Player X Wins: ${xWins}`;
-  document.getElementById("owins").innerText = `Player O Wins: ${oWins}`;
-  document.getElementById("ties").innerText = `Ties: ${ties}`;
-  document.getElementById(
-    "currentTurn"
-  ).innerText = `Current player: ${playerOne.name}`;
+  $("#xwins")[0].innerText = `Player X Wins: ${xWins}`;
+  $("#owins")[0].innerText = `Player O Wins: ${oWins}`;
+  $("#ties")[0].innerText = `Ties: ${ties}`;
+  $("#currentTurn").innerText = `Current player: ${playerOne.name}`;
   document.onclick = function(target) {
     targetSquare = document.getElementById(target.path[0].id);
     if (targetSquare.getAttribute("unplayed") == "true") {
@@ -189,10 +204,8 @@ function game() {
         targetSquare.setAttribute("Xplayed", true);
         checkForWin();
         moves++;
-        document.getElementById("moves").innerText = `Moves: ${moves}`;
-        document.getElementById(
-          "currentTurn"
-        ).innerText = `Current player: ${playerTwo.name}`;
+        $("#moves")[0].innerText = `Moves: ${moves}`;
+        $("#currentTurn")[0].innerText = `Current player: ${playerTwo.name}`;
       } else {
         playerTwo.isTurn = false;
         playerOne.isTurn = true;
@@ -201,31 +214,11 @@ function game() {
         targetSquare.setAttribute("Oplayed", true);
         checkForWin();
         moves++;
-        document.getElementById("moves").innerText = `Moves: ${moves}`;
-        document.getElementById(
-          "currentTurn"
-        ).innerText = `Current player: ${playerOne.name}`;
+        $("#moves")[0].innerText = `Moves: ${moves}`;
+        $("#currentTurn")[0].innerText = `Current player: ${playerOne.name}`;
       }
     }
   };
 }
 
 document.onload = game();
-
-const resModal = document.getElementById("resModal");
-const tieModal = document.getElementById("tieModal");
-const span = document.getElementsByClassName("close")[0];
-
-span.onclick = function() {
-  resModal.style.display = "none";
-  tieModal.style.display = "none";
-};
-
-window.onclick = function(event) {
-  if (event.target == resModal) {
-    resModal.style.display = "none";
-  }
-  if (event.target == tieModal) {
-    tieModal.style.display = "none";
-  }
-};
