@@ -52,3 +52,13 @@ body {
   text-decoration: none;
   cursor: pointer;
 }
+#currentTurn {
+  margin-bottom: 1  0px;
+}
+.gameinfo {
+  border: solid 1px black;
+  width: 20%;
+  margin-top: 5px;
+  margin-left: 40%;
+}
+
