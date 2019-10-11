@@ -4,13 +4,13 @@
 }
 
 body {
-  background: slateblue;
+  background: #41b3a3;
 }
 
 .squares {
   height: 100px;
   width: 100px;
-  border: 3px solid black;
+  border: 3px solid white;
   display: inline-block;
   margin: 2px;
   margin-left: 5px;
@@ -59,10 +59,10 @@ body {
   cursor: pointer;
 }
 #currentTurn {
-  margin-bottom: 1  0px;
+  margin-bottom: 10px;
 }
 .gameinfo {
-  border: solid 1px black;
+  border: solid 1px white;
   width: 20%;
   margin-top: 5px;
   margin-left: 40%;
