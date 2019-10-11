@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" type="text/css" href="./style.css" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>Tic Tac Toooooooe</title>
   </head>
   <body>
@@ -20,7 +20,7 @@
     <div id="tieModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <p>
+        <p id="tietext">
           This game has resulted in a tie. <button id="reset2">Restart?</button>
         </p>
       </div>
@@ -42,11 +42,12 @@
         <div class="squares" id="bottomRight">" "</div>
       </div>
     </div>
-    <p id="moves">0</p>
-    <p id="xwins">Player X Wins:</p>
-    <p id="owins">Player O wins:</p>
-    <p id="ties">Ties:</p>
-
+    <div class="gameinfo">
+      <p id="moves">Moves: 0</p>
+      <p id="xwins">Player X Wins:</p>
+      <p id="owins">Player O wins:</p>
+      <p id="ties">Ties:</p>
+    </div>
     <script src="java.js"></script>
   </body>
 </html>
