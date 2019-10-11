@@ -2,6 +2,7 @@
   box-sizing: border-box;
   text-align: center;
 }
+
 body {
   background: slateblue;
 }
@@ -9,13 +10,17 @@ body {
 .squares {
   height: 100px;
   width: 100px;
-  border: 1px solid blue;
+  border: 3px solid black;
   display: inline-block;
   margin: 2px;
   margin-left: 5px;
   text-align: center;
   justify-content: center;
   padding-top: 40px;
+}
+.squares:hover {
+  background-color: purple;
+  transform: scale(0.9);
 }
 
 .modal {
@@ -37,6 +42,7 @@ body {
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+  height: 100;
 }
 
 .close {
@@ -61,4 +67,3 @@ body {
   margin-top: 5px;
   margin-left: 40%;
 }
-
